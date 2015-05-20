@@ -187,12 +187,12 @@ namespace gui
 						if ((NowDateTime > StartDateTime) && (NowDateTime < EndDateTime))
 						{
 							fin = i;
-							labelBooked.Text = "Booket af: " + jsonlist[ps].Bookings[0].User.FirstName  + " Fra: " + jsonlist[ps].Bookings[fin].StartTime.Substring(11) + " - " + jsonlist[ps].Bookings[fin].EndTime.Substring(11) + " Dato: " + jsonlist[ps].Bookings[fin].EndTime.Substring(8,2) + "/" + jsonlist[ps].Bookings[fin].EndTime.Substring(5,2);
 
 						}
 						else
 							labelBooked.Text = "Ikke flere bookinger i dag :)"; //jsonlist[ps].Bookings.Length -1;
 					}
+					labelBooked.Text = "Booket af: " + jsonlist[ps].Bookings[0].User.FirstName  + " Fra: " + jsonlist[ps].Bookings[fin].StartTime.Substring(11) + " - " + jsonlist[ps].Bookings[fin].EndTime.Substring(11) + " Dato: " + jsonlist[ps].Bookings[fin].EndTime.Substring(8,2) + "/" + jsonlist[ps].Bookings[fin].EndTime.Substring(5,2);
 
 
 				}
