@@ -1,0 +1,15 @@
+﻿<Properties StartupItem="gui/gui.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="gui/makerlab.cs">
+    <Files>
+      <File FileName="gui/Program.cs" Line="1" Column="1" />
+      <File FileName="gui/makerlab.cs" Line="37" Column="37" />
+      <File FileName="gui/PrinterJson.cs" Line="1" Column="1" />
+      <File FileName="gui/Models/Printer.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
