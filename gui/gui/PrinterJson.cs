@@ -2,76 +2,31 @@
 using System.Net;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using Example;
+using MakerBotNameSpace;
 
 namespace gui
 {
-/*	public class Printer
-	{
-		public string Uuid { get; set; }
-		public bool isConnected { get; set; }
-		public DateTime lastSeen { get; set; }
-		public int client_id { get; set; }
-		public Info info { get; set; }
-			
-		public class Info
-		{
-			public Temperatures temperatures { get; set; }
-
-			public Status status { get; set; }
-		}
-
-		public class Temperatures
-		{
-			public int[] bed { get; set; }
-
-			public int[] nozzle { get; set; }
-		}
-
-		public class Status
-		{
-			public bool Printing { get; set; }
-
-			public int Current_line { get; set; }
-		}
-	}
-
-		
-*/
-
-
-
 	public class JsonDownloader
 	{
 		WebDownload json;
 		string DownloadedData;
+		string Url;
 
-	
-
-
-		public JsonDownloader ()
+		public JsonDownloader (string url)
 		{
 			json = new WebDownload ();
-		//	DownloadedData = json.DownloadString ("http://10.29.0.67:3000");
-		
+			Url = url;
 		}
 
-		public List<SampleResponse1> Download ()
+		public List<MakerBot> Download ()
 		{
 			var settings = new JsonSerializerSettings();
 			settings.NullValueHandling = NullValueHandling.Include;
-			DownloadedData = json.DownloadString ("http://v2.asemakerlab.au.dk/api/printers");
-			return JsonConvert.DeserializeObject<List<SampleResponse1>> (DownloadedData, settings);
-		
+			DownloadedData = json.DownloadString (Url);
+			return JsonConvert.DeserializeObject<List<MakerBot>> (DownloadedData, settings);
 		}
 
 	}
-
-
-
-
-
-
 
 
 	public class WebDownload : WebClient

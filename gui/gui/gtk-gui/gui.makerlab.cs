@@ -18,8 +18,6 @@ namespace gui
 		
 		private global::Gtk.Label label2;
 		
-		private global::Gtk.Label label5;
-		
 		private global::Gtk.HBox hbox1;
 		
 		private global::Gtk.VBox vbox2;
@@ -87,7 +85,7 @@ namespace gui
 			// Container child hbox5.Gtk.Box+BoxChild
 			this.labelNextPrint = new global::Gtk.Label ();
 			this.labelNextPrint.Name = "labelNextPrint";
-			this.labelNextPrint.LabelProp = global::Mono.Unix.Catalog.GetString ("Next print: ");
+			this.labelNextPrint.LabelProp = global::Mono.Unix.Catalog.GetString ("Print: ");
 			this.hbox5.Add (this.labelNextPrint);
 			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.labelNextPrint]));
 			w3.Position = 0;
@@ -101,25 +99,16 @@ namespace gui
 			w4.Position = 1;
 			w4.Expand = false;
 			w4.Fill = false;
-			// Container child hbox5.Gtk.Box+BoxChild
-			this.label5 = new global::Gtk.Label ();
-			this.label5.Name = "label5";
-			this.label5.LabelProp = global::Mono.Unix.Catalog.GetString ("label1");
-			this.hbox5.Add (this.label5);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.label5]));
-			w5.Position = 2;
+			this.vbox1.Add (this.hbox5);
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox5]));
+			w5.Position = 1;
 			w5.Expand = false;
 			w5.Fill = false;
-			this.vbox1.Add (this.hbox5);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox5]));
-			w6.Position = 1;
+			this.vbox.Add (this.vbox1);
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox [this.vbox1]));
+			w6.Position = 0;
 			w6.Expand = false;
 			w6.Fill = false;
-			this.vbox.Add (this.vbox1);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox [this.vbox1]));
-			w7.Position = 0;
-			w7.Expand = false;
-			w7.Fill = false;
 			// Container child vbox.Gtk.Box+BoxChild
 			this.hbox1 = new global::Gtk.HBox ();
 			this.hbox1.Name = "hbox1";
@@ -133,31 +122,31 @@ namespace gui
 			this.buttonStart.CanFocus = true;
 			this.buttonStart.Name = "buttonStart";
 			this.buttonStart.UseUnderline = true;
-			this.buttonStart.Label = global::Mono.Unix.Catalog.GetString ("Start Print");
+			this.buttonStart.Label = global::Mono.Unix.Catalog.GetString ("Start print");
 			this.vbox2.Add (this.buttonStart);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.buttonStart]));
-			w8.Position = 0;
-			w8.Expand = false;
-			w8.Fill = false;
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.buttonStart]));
+			w7.Position = 0;
+			w7.Expand = false;
+			w7.Fill = false;
 			// Container child vbox2.Gtk.Box+BoxChild
 			this.buttonStop = new global::Gtk.Button ();
 			this.buttonStop.CanFocus = true;
 			this.buttonStop.Name = "buttonStop";
 			this.buttonStop.UseUnderline = true;
-			this.buttonStop.Label = global::Mono.Unix.Catalog.GetString ("Stop Print");
+			this.buttonStop.Label = global::Mono.Unix.Catalog.GetString ("Stop print");
 			this.vbox2.Add (this.buttonStop);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.buttonStop]));
-			w9.Position = 1;
-			w9.Expand = false;
-			w9.Fill = false;
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.buttonStop]));
+			w8.Position = 1;
+			w8.Expand = false;
+			w8.Fill = false;
 			this.hbox1.Add (this.vbox2);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox2]));
-			w10.Position = 0;
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox2]));
+			w9.Position = 0;
 			this.vbox.Add (this.hbox1);
-			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox [this.hbox1]));
-			w11.Position = 1;
-			w11.Expand = false;
-			w11.Fill = false;
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox [this.hbox1]));
+			w10.Position = 1;
+			w10.Expand = false;
+			w10.Fill = false;
 			// Container child vbox.Gtk.Box+BoxChild
 			this.vbox4 = new global::Gtk.VBox ();
 			this.vbox4.Name = "vbox4";
@@ -174,18 +163,18 @@ namespace gui
 			this.progressbarPrint = new global::Gtk.ProgressBar ();
 			this.progressbarPrint.Name = "progressbarPrint";
 			this.hbox2.Add (this.progressbarPrint);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.progressbarPrint]));
-			w12.Position = 0;
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.progressbarPrint]));
+			w11.Position = 0;
 			this.vbox3.Add (this.hbox2);
-			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox2]));
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox2]));
+			w12.Position = 0;
+			w12.Expand = false;
+			w12.Fill = false;
+			this.vbox4.Add (this.vbox3);
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.vbox3]));
 			w13.Position = 0;
 			w13.Expand = false;
 			w13.Fill = false;
-			this.vbox4.Add (this.vbox3);
-			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.vbox3]));
-			w14.Position = 0;
-			w14.Expand = false;
-			w14.Fill = false;
 			// Container child vbox4.Gtk.Box+BoxChild
 			this.hbox3 = new global::Gtk.HBox ();
 			this.hbox3.Name = "hbox3";
@@ -196,30 +185,30 @@ namespace gui
 			this.labelNozzleTemp.Xalign = 0F;
 			this.labelNozzleTemp.LabelProp = global::Mono.Unix.Catalog.GetString ("Nozzle temp: ");
 			this.hbox3.Add (this.labelNozzleTemp);
-			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.labelNozzleTemp]));
-			w15.Position = 0;
-			w15.Expand = false;
-			w15.Fill = false;
+			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.labelNozzleTemp]));
+			w14.Position = 0;
+			w14.Expand = false;
+			w14.Fill = false;
 			// Container child hbox3.Gtk.Box+BoxChild
 			this.labelBpTemp = new global::Gtk.Label ();
 			this.labelBpTemp.Name = "labelBpTemp";
 			this.labelBpTemp.Xalign = 0F;
 			this.labelBpTemp.LabelProp = global::Mono.Unix.Catalog.GetString ("BP temp :");
 			this.hbox3.Add (this.labelBpTemp);
-			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.labelBpTemp]));
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.labelBpTemp]));
+			w15.Position = 1;
+			w15.Expand = false;
+			w15.Fill = false;
+			this.vbox4.Add (this.hbox3);
+			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.hbox3]));
 			w16.Position = 1;
 			w16.Expand = false;
 			w16.Fill = false;
-			this.vbox4.Add (this.hbox3);
-			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbox4 [this.hbox3]));
-			w17.Position = 1;
+			this.vbox.Add (this.vbox4);
+			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbox [this.vbox4]));
+			w17.Position = 2;
 			w17.Expand = false;
 			w17.Fill = false;
-			this.vbox.Add (this.vbox4);
-			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vbox [this.vbox4]));
-			w18.Position = 2;
-			w18.Expand = false;
-			w18.Fill = false;
 			// Container child vbox.Gtk.Box+BoxChild
 			this.vbox5 = new global::Gtk.VBox ();
 			this.vbox5.Name = "vbox5";
@@ -230,15 +219,15 @@ namespace gui
 			this.labelBooked.Xalign = 0F;
 			this.labelBooked.LabelProp = global::Mono.Unix.Catalog.GetString ("Booked");
 			this.vbox5.Add (this.labelBooked);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.labelBooked]));
-			w19.Position = 0;
+			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vbox5 [this.labelBooked]));
+			w18.Position = 0;
+			w18.Expand = false;
+			w18.Fill = false;
+			this.vbox.Add (this.vbox5);
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox [this.vbox5]));
+			w19.Position = 3;
 			w19.Expand = false;
 			w19.Fill = false;
-			this.vbox.Add (this.vbox5);
-			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vbox [this.vbox5]));
-			w20.Position = 3;
-			w20.Expand = false;
-			w20.Fill = false;
 			this.Add (this.vbox);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
