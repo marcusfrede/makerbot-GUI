@@ -144,6 +144,7 @@
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">Start Print</property>
                     <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnButtonStartClicked" />
                   </widget>
                   <packing>
                     <property name="Position">1</property>

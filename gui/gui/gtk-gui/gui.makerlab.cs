@@ -269,6 +269,7 @@ namespace gui
 			this.DefaultWidth = 344;
 			this.DefaultHeight = 233;
 			this.Show ();
+			this.buttonStart.Clicked += new global::System.EventHandler (this.OnButtonStartClicked);
 		}
 	}
 }

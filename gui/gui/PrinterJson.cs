@@ -53,14 +53,14 @@ namespace gui
 		{
 			json = new WebDownload ();
 		//	DownloadedData = json.DownloadString ("http://10.29.0.67:3000");
-			DownloadedData = json.DownloadString ("http://v2.asemakerlab.au.dk/api/printers");
+		
 		}
 
 		public List<SampleResponse1> Download ()
 		{
 			var settings = new JsonSerializerSettings();
 			settings.NullValueHandling = NullValueHandling.Include;
-
+			DownloadedData = json.DownloadString ("http://v2.asemakerlab.au.dk/api/printers");
 			return JsonConvert.DeserializeObject<List<SampleResponse1>> (DownloadedData, settings);
 		
 		}

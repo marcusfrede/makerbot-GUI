@@ -6,24 +6,25 @@ using System.Collections.Generic;
 using GLib;
 using System.Globalization;
 using System.Net;
+using Example;
 
 namespace gui
 {
 	public partial class makerlab : Gtk.Window
 	{
 	
-		public int fin = 0;
-
+		public int fin;
 		public int updateCount = 0;
-		public static int ps = 0;
+		public int ps = 0;
 		public JsonDownloader jdown;
+		public List<SampleResponse1> jsonlist;
 
 		public makerlab (string[] args) :
 			base (Gtk.WindowType.Toplevel)
 		{
 			this.Build ();
-		//	this.SetSizeRequest (320, 240);
-			this.Fullscreen ();
+			this.SetSizeRequest (320, 240);
+		//	this.Fullscreen ();
 			jdown = new JsonDownloader();
 		
 
@@ -48,7 +49,7 @@ namespace gui
 
 
 			SetupLabelUi();
-			LoadPrintFilesToList();
+		//	LoadPrintFilesToList();
 			StartClock();
 		}
 
@@ -59,7 +60,7 @@ namespace gui
 			switch (ps) 
 			{
 			case 0: 
-				col = new Gdk.Color (255, 23, 68);  //Pink   A400
+				col = new Gdk.Color (255, 23, 68);  //Pink    A400
 				break;
 				case 1:
 					col = new Gdk.Color(0,229,255);  //Cyan   A400
@@ -144,33 +145,31 @@ namespace gui
 			updateCount++;
 		//	label5.Hide ();
 			label5.Text = "update nr: " + updateCount;
-			labelNextPrint.Text = "Next print: " + comboboxPrintSelect.ActiveText;
 			label6.Hide();
 
-
-			if (comboboxPrintSelect.ActiveText == null)
-				buttonStart.Hide ();
-			else {
-				buttonStart.Show ();
-			}
+			comboboxPrintSelect.Hide ();
+		//	if (comboboxPrintSelect.ActiveText == null)
+			//	buttonStart.Hide ();
+		//	else {
+			//	buttonStart.Show ();
+		//	}
 
 			try
 			{
-				 
-
-				var jsonlist = jdown.Download();
+			    jsonlist = jdown.Download();
 
 				labelPrinterName.Text = jsonlist[ps].Name;
 				labelNozzleTemp.Text = "Nozzle temp: " + jsonlist[ps].NozzleTemperature.ToString();   //.info.temperatures.nozzle[0].ToString() + " \u00B0C";
 				labelBpTemp.Text = "Bed temp: " + jsonlist[ps].BedTemperature.ToString(); // booking[0].info.temperatures.bed[0].ToString() + " \u00B0C";
+
+
 		
-				if(jsonlist[ps].Bookings != null)
-				{
 					DateTime NowDateTime = DateTime.Now;
 
 
 					for (int i=0; i< jsonlist[ps].Bookings.Length; i++)
 					{
+
 						String StringStartTime = jsonlist[ps].Bookings[i].StartTime;
 
 						DateTime StartDateTime;
@@ -187,23 +186,18 @@ namespace gui
 						if ((NowDateTime > StartDateTime) && (NowDateTime < EndDateTime))
 						{
 							fin = i;
+							labelBooked.Text = "Booket af: " + jsonlist[ps].Bookings[fin].User.FirstName  + " fra: " + jsonlist[ps].Bookings[fin].StartTime.Substring(11,5) + " - " + jsonlist[ps].Bookings[fin].EndTime.Substring(11,5) + " " + jsonlist[ps].Bookings[fin].EndTime.Substring(8,2) + "/" + jsonlist[ps].Bookings[fin].EndTime.Substring(5,2);
+						labelNextPrint.Text = "Print: " + jsonlist[ps].Bookings[fin].File.FileName.ToString() ;// + comboboxPrintSelect.ActiveText;
 
-						}
-						else
-							labelBooked.Text = "Ikke flere bookinger i dag :)"; //jsonlist[ps].Bookings.Length -1;
 					}
-					labelBooked.Text = "Booket af: " + jsonlist[ps].Bookings[0].User.FirstName  + " Fra: " + jsonlist[ps].Bookings[fin].StartTime.Substring(11) + " - " + jsonlist[ps].Bookings[fin].EndTime.Substring(11) + " Dato: " + jsonlist[ps].Bookings[fin].EndTime.Substring(8,2) + "/" + jsonlist[ps].Bookings[fin].EndTime.Substring(5,2);
+						else
+							labelBooked.Text = "Ikke booket lige nu"; //jsonlist[ps].Bookings.Length -1;
+					}
 
 
-				}
-				else 
-					labelBooked.Text = "Booket af: N/A" ;
+		
 
-
-
-
-
-				if (jsonlist[0].Printing == true) // .info.status.Printing == true) 
+				if (jsonlist[ps].Printing == true) // .info.status.Printing == true) 
 				{
 					progressbarPrint.Show();
 					labelNozzleTemp.Show();
@@ -211,22 +205,22 @@ namespace gui
 
 					progressbarPrint.Pulse();
 
-					double max = 22066;
+					double max = jsonlist[ps].Bookings[fin].File.NumberOfLines;
 					double cur = jsonlist [ps].CurrentLine; //.info.status.Current_line;
 					double per = cur / max;
 
 					progressbarPrint.Fraction = per;
 					progressbarPrint.Text = per.ToString("P1", CultureInfo.InvariantCulture);
 
-					comboboxPrintSelect.Hide();
+				//	comboboxPrintSelect.Hide();
 					buttonStart.Hide();
 
-					//		label6.Text = booking[ps].info.status.Current_line.ToString();
+					//label6.Text = booking[ps].info.status.Current_line.ToString();
 					buttonStop.Show();
 				} else 
 				{
 					progressbarPrint.Hide(); 
-					comboboxPrintSelect.Show();
+			//		comboboxPrintSelect.Show();
 					buttonStop.Hide();
 				}
 		
@@ -236,7 +230,7 @@ namespace gui
 				Console.WriteLine("Exception source: {0}", e);
 				buttonStart.Hide ();
 				buttonStop.Hide ();
-				comboboxPrintSelect.Hide ();
+			//	comboboxPrintSelect.Hide ();
 				progressbarPrint.Hide ();
 				labelNozzleTemp.Hide ();
 				labelBpTemp.Hide ();
@@ -250,24 +244,23 @@ namespace gui
 
 		protected void OnButton2Clicked (object sender, EventArgs e)
 		{
-			WebClient ConnectToNodejs = new WebClient (); 
-			if (labelNextPrint.Text == "Next print: crep.gcode")
-				ConnectToNodejs.DownloadString("http://10.29.0.67:3000/start_print?url=http://data01.gratisupload.dk/f/8rhnaqxm59.gcode&uuid=55330343434351D072C1");
-			if (labelNextPrint.Text == "Next print: crep4.gcode")
-				ConnectToNodejs.DownloadString("http://10.29.0.67:3000/start_print?url=http://data01.gratisupload.dk/f/8rmeoklxpi.gcode&uuid=55330343434351D072C1");
+		//"printerId/StartBooking/{bookingId})";
+		//	if (labelNextPrint.Text == "Next print: crep4.gcode")
+		//		ConnectToNodejs.DownloadString("http://10.29.0.67:3000/start_print?url=http://data01.gratisupload.dk/f/8rmeoklxpi.gcode&uuid=55330343434351D072C1");
 		}
 
 
 		protected void OnCombobox1Changed (object sender, EventArgs e)
 		{
-			labelNextPrint.Text = "Next print: " + comboboxPrintSelect.ActiveText;
+			labelNextPrint.Text = "Next print: ";// + comboboxPrintSelect.ActiveText;
 			buttonStart.Show ();
 		}	
 
 		protected void OnButton3Clicked (object sender, EventArgs e)
 		{
+			Console.WriteLine("http://v2.asemakerlab.au.dk/api/Printers/" + jsonlist[ps].Id.ToString() + "/CancelPrint");
 			WebClient ConnectToNodejs = new WebClient (); 
-			ConnectToNodejs.DownloadString("http://10.29.0.67:3000/cancel_print?uuid=55330343434351D072C1");		
+			ConnectToNodejs.DownloadString ("http://v2.asemakerlab.au.dk/api/Printers/" + jsonlist[ps].Id.ToString() + "/CancelPrint");	
 		}
 
 		
@@ -281,6 +274,19 @@ namespace gui
 
 
 
+		protected void OnButtonStartClicked (object sender, EventArgs e)
+		{
+			try
+			{
+				Console.WriteLine("http://v2.asemakerlab.au.dk/api/Printers/" + jsonlist[ps].Id.ToString() + "/StartBooking/" + jsonlist[ps].Bookings[fin].Id.ToString() );
+				WebClient ConnectToNodejs = new WebClient (); 
+				ConnectToNodejs.DownloadString ("http://v2.asemakerlab.au.dk/api/Printers/" + jsonlist[ps].Id.ToString() + "/StartBooking/" + jsonlist[ps].Bookings[fin].Id.ToString() );	
+			}
+			catch (Exception r)
+			{
+				Console.WriteLine("Exception source: {0}", r);
+			}
+		}
 }
 }
 	

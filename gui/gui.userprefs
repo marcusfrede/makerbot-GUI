@@ -3,9 +3,9 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="gui/makerlab.cs">
     <Files>
       <File FileName="gui/Program.cs" Line="1" Column="1" />
-      <File FileName="gui/makerlab.cs" Line="37" Column="37" />
-      <File FileName="gui/PrinterJson.cs" Line="1" Column="1" />
-      <File FileName="gui/Models/Printer.cs" Line="1" Column="1" />
+      <File FileName="gui/makerlab.cs" Line="6" Column="6" />
+      <File FileName="gui/PrinterJson.cs" Line="3" Column="3" />
+      <File FileName="gui/Models/Printer.cs" Line="2" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

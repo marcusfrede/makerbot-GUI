@@ -22,11 +22,9 @@ namespace Example.SampleResponse1JsonTypes
 		[JsonProperty("FilePath")]
 		public object FilePath { get; set; }
 
-		[JsonProperty("FileBytes")]
-		public object FileBytes { get; set; }
+		[JsonProperty("NumberOfLines")]
+		public int NumberOfLines { get; set; }
 
-		[JsonProperty("ContentType")]
-		public object ContentType { get; set; }
 	}
 
 	public class File2
@@ -41,11 +39,8 @@ namespace Example.SampleResponse1JsonTypes
 		[JsonProperty("FilePath")]
 		public object FilePath { get; set; }
 
-		[JsonProperty("FileBytes")]
-		public object FileBytes { get; set; }
-
-		[JsonProperty("ContentType")]
-		public object ContentType { get; set; }
+		[JsonProperty("NumberOfLines")]
+		public int NumberOfLines { get; set; }
 	}
 
 	public class Printer
