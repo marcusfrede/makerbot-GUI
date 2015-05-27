@@ -24,8 +24,8 @@ namespace gui
 			base (Gtk.WindowType.Toplevel)
 		{
 			this.Build ();
-			this.SetSizeRequest (320, 240);
-			//	this.Fullscreen ();
+			//this.SetSizeRequest (320, 240);
+			this.Fullscreen ();
 			jdown = new JsonDownloader ("http://v2.asemakerlab.au.dk/api/Printers");
 			ConnectToNodejs = new WebClient ();
 			switch (args [0]) {
@@ -170,6 +170,7 @@ namespace gui
 				} else {
 					progressbarPrint.Hide (); 
 					buttonStop.Hide ();
+					buttonStart.Show();
 				}
 		
 			} catch (Exception ex) {
